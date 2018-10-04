@@ -1,11 +1,11 @@
-import React from 'react' 
-import {
+import React from 'react'  
+import { 
   Header,
   Segment,
   List, 
   Image,
 } from 'semantic-ui-react';
-//import axios from 'axios';
+import axios from 'axios';
 import Startreklogo from '../images/treklogo.png';
 import Location from './Location'; 
 import { fetchLocations } from '../reducers/locations';
@@ -15,15 +15,15 @@ class StartrekLocations extends React.Component {
   state = { locations: [] }
 
   componentDidMount() {
-    const { dispatch } = this.props
-    dispatch(fetchLocations("startrek"))
-    // axios.get('/api/locations?nerd_type=startrek')
-    //  .then( res => {
-    //    this.setState({ locations: res.data })
-    //  })
-    //  .catch( err => {
-    //    console.log(err)
-    //  })
+    // const { dispatch } = this.props
+    // dispatch(fetchLocations("startrek"))
+    axios.get('/api/locations?nerd_type=startrek')
+     .then( res => {
+       this.setState({ locations: res.data })
+     })
+     .catch( err => {
+       console.log(err)
+     })
   }
 
 //    resetLocationState = (id) => {
@@ -34,10 +34,10 @@ class StartrekLocations extends React.Component {
 //  }
 
   displayLocations = () => {
-    //    return this.state.locations.map( location => {
-    return this.props.locations.map( location => {
+    //    return this.props.locations.map( location => {
+    return this.state.locations.map( location => {
       return(
-        <Location Location={location} resetLocations={this.resetLocationState} />
+        <Location location={location} resetLocations={this.resetLocationState} />
       )
     })
   }
@@ -55,11 +55,12 @@ class StartrekLocations extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    locations: state.locations,
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     locations: state.locations,
+//   }
+// }
 
-export default connect(mapStateToProps)(StartrekLocations);
+export default StartrekLocations;
+//export default connect(mapStateToProps)(StartrekLocations);
 

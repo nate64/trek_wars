@@ -5,7 +5,7 @@ import {
   List,
   Image,
 } from 'semantic-ui-react';
-//import axios from 'axios';
+import axios from 'axios';
 import StarwarsLogo from '../images/starwarslogo.png';
 import Location from './Location';
 import { fetchLocations } from '../reducers/locations';
@@ -15,15 +15,15 @@ class StarwarsLocations extends React.Component {
   state = { locations: [] }
 
   componentDidMount() {
-    const { dispatch } = this.props
-    dispatch(fetchLocations("starwars"))
-  //  axios.get('/api/locations?nerd_type=starwars')
-  //    .then( res => {
-  //      this.setState({ locations: res.data })
-  //    })
-  //    .catch( err => {
-  //      console.log(err)
-  //    })
+    // const { dispatch } = this.props
+    // dispatch(fetchLocations("starwars"))
+   axios.get('/api/locations?nerd_type=starwars')
+     .then( res => {
+       this.setState({ locations: res.data })
+     })
+     .catch( err => {
+       console.log(err)
+     })
   }
 
 //  resetLocationLocationState = (id) => {
@@ -34,8 +34,8 @@ class StarwarsLocations extends React.Component {
 //  }
 
   displayLocations = () => {
-//    return this.state.locations.map( location => {
-    return this.props.locations.map( location => {
+//    return this.props.locations.map( location => {
+    return this.state.locations.map( location => {
       return(
         <Location location={location} resetLocations={this.resetLocationState} />
       )
@@ -55,11 +55,12 @@ class StarwarsLocations extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    locations: state.locations,
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     locations: state.locations,
+//   }
+// }
 
-export default connect(mapStateToProps)(StarwarsLocations);
+export default StarwarsLocations;
+//export default connect(mapStateToProps)(StarwarsLocations);
 

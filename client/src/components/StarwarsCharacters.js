@@ -5,7 +5,7 @@ import {
   List,
   Image,
 } from 'semantic-ui-react';
-//import axios from 'axios';
+import axios from 'axios';
 import StarwarsLogo from '../images/starwarslogo.png';
 import Character from './Character';
 import { fetchCharacters } from '../reducers/characters';
@@ -14,16 +14,18 @@ import { connect } from 'react-redux';
 class StarwarsCharacters extends React.Component {
   state = { characters: [] }
 
+
+  //swap the commented lines this function
   componentDidMount() {
-    const { dispatch } = this.props
-    dispatch(fetchCharacters("starwars"))
-  //  axios.get('/api/characters?nerd_type=starwars')
-  //    .then( res => {
-  //      this.setState({ characters: res.data })
-  //    })
-  //    .catch( err => {
-  //      console.log(err)
-  //    })
+    // const { dispatch } = this.props
+    // dispatch(fetchCharacters("starwars"))
+   axios.get('/api/characters?nerd_type=starwars')
+     .then( res => {
+       this.setState({ characters: res.data })
+     })
+     .catch( err => {
+       console.log(err)
+     })
   }
 
 //  resetCharacterState = (id) => {
@@ -34,8 +36,8 @@ class StarwarsCharacters extends React.Component {
 //  }
 
   displayCharacters = () => {
-//    return this.state.characters.map( character => {
-    return this.props.characters.map( character => {
+//    return this.props.characters.map( character => {
+    return this.state.characters.map( character => {
       return(
         <Character character={character} resetCharacters={this.resetCharacterState} />
       )
@@ -55,11 +57,14 @@ class StarwarsCharacters extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    characters: state.characters,
-  }
-}
+//uncomment this block
+// const mapStateToProps = (state) => {
+//   return {
+//     characters: state.characters,
+//   }
+// }
 
-export default connect(mapStateToProps)(StarwarsCharacters);
+export default StarwarsCharacters;
+//redux
+//export default connect(mapStateToProps)(StartrekCharacters)
 

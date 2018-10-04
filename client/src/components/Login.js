@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Header, Segment, Form, Button } from 'semantic-ui-react';
+import { Header, Segment, Form, Button, Image } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { handleLogin } from '../reducers/user';
+import Startreklogo from '../images/treklogo.png';
+import StarwarsLogo from '../images/starwarslogo.png';
 
 class Login extends Component {
   state = { email: '', password: '' };
@@ -47,6 +49,10 @@ class Login extends Component {
           </Form.Field>
           <Segment textAlign='center' basic>
             <Button primary type='submit'>Submit</Button>
+          </Segment>
+          <Segment imageAlign ='center' >
+            <Image src={Startreklogo} />
+            <Image src={StarwarsLogo} size="medium" />
           </Segment>
         </Form>
       </Segment>

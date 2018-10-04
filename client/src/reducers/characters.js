@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'; 
 import { setFlash } from './flash';
 
 export const fetchCharacters = (type) => {
@@ -42,9 +42,9 @@ export const updateCharacter = (character, id) => {
 
 const characters = (state = [], action) => {
   switch(action.type) {
-    case 'SET_CHARACTERS'://additional filtering?
+    case 'SET_CHARACTERS':
       return action.characters;
-      //return state.filter(character => character.nerdtype !== action.type )
+      // return state.filter(ch aracter => character.nerdtype !== action.type )
     case 'DELETE_CHARACTER':
       return state.filter(character => character.id !== action.character.id )
     case 'UPDATE_CHARACTER':

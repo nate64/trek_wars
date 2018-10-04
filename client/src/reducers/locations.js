@@ -42,17 +42,17 @@ export const updateLocation = (location, id) => {
 
 const locations = (state = [], action) => {
   switch(action.type) {
-    case 'SET_LOCATIONS'://additional filtering?
+    case 'SET_LOCATIONS':
       return action.locations;
       //return state.filter(location => location.nerdtype !== action.type )
     case 'DELETE_LOCATION':
       return state.filter(location => location.id !== action.location.id )
     case 'UPDATE_LOCATION':
-      return state.map( c => {
-        if (c.id === action.location.id)
+      return state.map( l => {
+        if (l.id === action.location.id)
           return action.location
         else
-          return c
+          return l
       })
     default:
       return state;
